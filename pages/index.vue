@@ -1,15 +1,28 @@
 <template lang="pug">
-  .container
-    aside.flex.flex-col.items-center.space-y-2
+  #jess-portfolio.flex.flex-row
+    aside.p-8.flex.flex-col.justify-items-start.items-center.space-y-2.text-center
       img.w-32.rounded-full(src="~/static/jess.png")
-      strong Jéssica Fernandes
+      strong.text-lg Jéssica Fernandes
       small Copy Writer
+
+    main.py-4.pr-4.flex.flex-col.flex-nowrap
+      nuxt-content(
+        v-for="job, index in jobs"
+        :key="index"
+        :document="job"
+      )
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  async asyncData ({ $content }) {
+    const jobs = await $content('jobs').fetch()
+
+    return { jobs }
+  }
+})
 </script>
 
 <style>
