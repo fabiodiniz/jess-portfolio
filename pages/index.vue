@@ -1,30 +1,9 @@
-<template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        portfolio-jess
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  .container
+    aside.flex.flex-col.items-center.space-y-2
+      img.w-32.rounded-full(src="~/static/jess.png")
+      strong Jéssica Fernandes
+      small Copy Writer
 </template>
 
 <script lang="ts">
