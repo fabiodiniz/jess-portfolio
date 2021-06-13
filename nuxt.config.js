@@ -38,7 +38,26 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content'
+    '@nuxt/content',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: 'AIzaSyAaLM2ouihUtO70itQhquX5er0DU9Z-WVA',
+          authDomain: 'portfolio-jazz.firebaseapp.com',
+          projectId: 'portfolio-jazz',
+          storageBucket: 'portfolio-jazz.appspot.com',
+          messagingSenderId: '1067913269806',
+          appId: '1:1067913269806:web:8e4b1dd43f16748b3d05bf',
+          measurementId: 'G-R7SDNM3Q0X'
+        },
+        services: {
+          auth: true,
+          firestore: true,
+          analytics: true
+        }
+      }
+    ]
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
