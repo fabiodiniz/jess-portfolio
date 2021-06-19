@@ -1,7 +1,6 @@
-<template>
-  <div>
-    <Nuxt />
-  </div>
+<template lang="pug">
+  #jess-portfolio.flex.flex-col.items-center.mx-auto
+    nuxt
 </template>
 
 <style>
@@ -22,6 +21,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+#jess-portfolio {
+  width: 100%;
+  max-width: 1210px;
 }
 
 *,
