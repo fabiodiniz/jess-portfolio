@@ -30,8 +30,18 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    // https://google-fonts.nuxtjs.org/options
+    '@nuxtjs/google-fonts'
   ],
+
+  // Google Fonts: https://google-fonts.nuxtjs.org/
+  googleFonts: {
+    families: {
+      Roboto: true,
+      'Courier Prime': true
+    }
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
