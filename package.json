@@ -42,7 +42,7 @@
     "eslint-plugin-vue": "^7.11.1",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "postcss": "^8.3.4",
+    "postcss": "^8.3.5",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
     "stylelint": "^13.12.0",
