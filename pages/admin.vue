@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { useContext } from '@nuxtjs/composition-api'
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator'
 import useAuth from '~/composables/useAuth'
 
 @Component({
