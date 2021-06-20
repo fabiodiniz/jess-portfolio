@@ -10,12 +10,17 @@ import { Job } from '~/types'
 export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
   const loadingJobs: Ref<boolean> = ref(false)
   const getJobs: Ref<Job[]> = ref([])
+  const currentJob: Ref<Job | object> = ref({})
 
   const fetchCollection = async (): Promise<Job[]> => {
+    loadingJobs.value = true
+
     const jobs = await $fire
       .firestore
       .collection('jobs')
       .get()
+
+    loadingJobs.value = false
 
     return jobs
       .docs
@@ -25,6 +30,21 @@ export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
           ...job.data(),
         } as Job
       })
+  }
+
+  const fetchJob = async (slug: string) => {
+    loadingJobs.value = true
+
+    const job = await $fire
+      .firestore
+      .collection('jobs')
+      .where('slug', '==', slug)
+      .get()
+
+    loadingJobs.value = false
+    currentJob.value = job.docs[0].data() as Job
+
+    return currentJob.value
   }
 
   const { fetch } = useFetch(async () => {
@@ -38,6 +58,8 @@ export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
   return {
     loadingJobs,
     getJobs,
+    currentJob,
+    fetchJob,
     fetchJobs: fetch,
   }
 }

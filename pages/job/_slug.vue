@@ -15,7 +15,7 @@
 
       copy-text(:text="getUrl()")
         .text-3xl.mx-4.uppercase.font-black
-          i {{ $route.params.id }}
+          i {{ $route.params.slug }}
 
       spacer
 
@@ -27,7 +27,7 @@
           alt="Copiar link"
         )
 
-    job-content(:job="{ id: $route.params.id }")
+    job-content(:job="currentJob")
 </template>
 
 <script lang="ts">
@@ -37,8 +37,10 @@ import useJobs from '~/composables/useJobs'
 
 @Component({
   setup () {
-    const { $fire } = useContext()
+    const { $fire, route } = useContext()
     const ctx = useJobs($fire)
+
+    ctx.fetchJob(route.value.params.slug)
 
     return { ...ctx }
   },

@@ -12,7 +12,6 @@ class User extends VuexModule {
 
   @Mutation
   setJobs (jobs: Job[]) {
-    debugger
     this.jobs = jobs
   }
 
