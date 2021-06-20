@@ -12,9 +12,9 @@ export default Vue.extend({
   props: {
     type: {
       type: String,
-      default: 'submit'
-    }
-  }
+      default: 'submit',
+    },
+  },
 })
 </script>
 

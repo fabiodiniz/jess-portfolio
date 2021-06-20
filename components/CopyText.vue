@@ -10,8 +10,8 @@ export default Vue.extend({
   props: {
     text: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   methods: {
     copy () {
@@ -23,8 +23,8 @@ export default Vue.extend({
       document.execCommand('copy')
       document.body.removeChild(dummy)
       window.alert('O link foi copiado')
-    }
-  }
+    },
+  },
 })
 </script>
 

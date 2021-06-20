@@ -14,8 +14,8 @@ export default Vue.extend({
   props: {
     jobs: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 })
 </script>

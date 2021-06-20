@@ -15,12 +15,12 @@ export default Vue.extend({
   props: {
     value: {
       type: String,
-      default: ''
+      default: '',
     },
     placeholder: {
       type: String,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 })
 </script>

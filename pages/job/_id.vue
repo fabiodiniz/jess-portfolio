@@ -39,7 +39,7 @@ export default Vue.extend({
       return process.browser
         ? window.document.location.href
         : ''
-    }
-  }
+    },
+  },
 })
 </script>

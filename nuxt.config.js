@@ -5,11 +5,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -32,15 +32,15 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     // https://google-fonts.nuxtjs.org/options
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
   ],
 
   // Google Fonts: https://google-fonts.nuxtjs.org/
   googleFonts: {
     families: {
       Roboto: true,
-      'Courier Prime': true
-    }
+      'Courier Prime': true,
+    },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -59,22 +59,22 @@ export default {
           storageBucket: 'portfolio-jazz.appspot.com',
           messagingSenderId: '1067913269806',
           appId: '1:1067913269806:web:8e4b1dd43f16748b3d05bf',
-          measurementId: 'G-R7SDNM3Q0X'
+          measurementId: 'G-R7SDNM3Q0X',
         },
         services: {
           auth: true,
           firestore: true,
-          analytics: true
-        }
-      }
-    ]
+          analytics: true,
+        },
+      },
+    ],
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
-    }
+      lang: 'en',
+    },
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
@@ -82,5 +82,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
 }

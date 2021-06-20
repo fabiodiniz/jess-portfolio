@@ -27,8 +27,8 @@ export default Vue.extend({
   data () {
     return {
       login: null,
-      password: null
+      password: null,
     }
-  }
+  },
 })
 </script>

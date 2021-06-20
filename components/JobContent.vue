@@ -9,8 +9,8 @@ export default Vue.extend({
   props: {
     job: {
       type: Object,
-      default: () => ({})
-    }
-  }
+      default: () => ({}),
+    },
+  },
 })
 </script>
