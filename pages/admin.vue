@@ -4,7 +4,8 @@
 
     horizontal-line
 
-    .text-lg(v-if="isLoggedIn") Você já está logado
+    .text-lg(v-if="isLoggedIn")
+      .mt-5 Você já está logado
 
     login-form(
       v-else
@@ -14,40 +15,17 @@
 </template>
 
 <script lang="ts">
+import { useContext } from '@nuxtjs/composition-api'
 import { Vue, Component } from 'vue-property-decorator'
-import { getModule } from 'vuex-module-decorators'
-import { delay } from '~/utils'
-import User from '~/store/User'
-import { LoginPayload } from '~/interfaces'
+import useAuth from '~/composables/useAuth'
 
-@Component
-export default class Admin extends Vue {
-  loading = false
-  UserStore = getModule(User, this.$store)
+@Component({
+  setup () {
+    const { $fire } = useContext()
+    const ctx = useAuth($fire)
 
-  get isLoggedIn () {
-    return this.UserStore.isLoggedIn
-  }
-
-  async auth (payload: LoginPayload) {
-    return await this.$fire
-      .auth
-      .signInWithEmailAndPassword(payload.email, payload.password)
-  }
-
-  async login (payload: LoginPayload) {
-    this.loading = true
-    await this.auth(payload)
-    await delay(500)
-    this.loading = false
-  }
-
-  async logout () {
-    await this.$fire
-      .auth
-      .signOut()
-
-    this.loading = false
-  }
-}
+    return { ...ctx }
+  },
+})
+export default class Admin extends Vue {}
 </script>

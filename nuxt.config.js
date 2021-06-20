@@ -33,6 +33,8 @@ export default {
     '@nuxtjs/tailwindcss',
     // https://google-fonts.nuxtjs.org/options
     '@nuxtjs/google-fonts',
+    // https://composition-api.nuxtjs.org/
+    '@nuxtjs/composition-api/module',
   ],
 
   // Google Fonts: https://google-fonts.nuxtjs.org/

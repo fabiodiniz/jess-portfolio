@@ -1,20 +1,34 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { FirebaseAuth, User as UserType } from '~/types'
-
 @Module({
   name: 'User',
   stateFactory: true,
   namespaced: true,
 })
 class User extends VuexModule {
-  user: UserType = {}
+  user: UserType | null = null
 
   @Mutation
   setUser ({ authUser }: FirebaseAuth) {
-    if (!authUser) this.user = {}
+    if (!authUser) this.user = null
     else {
-      const { uid, email, emailVerified } = authUser
-      this.user = { uid, email, emailVerified }
+      const {
+        displayName,
+        email,
+        phoneNumber,
+        photoURL,
+        providerId,
+        uid,
+      } = authUser
+
+      this.user = {
+        displayName,
+        email,
+        phoneNumber,
+        photoURL,
+        providerId,
+        uid,
+      }
     }
   }
 
@@ -27,12 +41,14 @@ class User extends VuexModule {
     }
   }
 
-  get getUser () {
-    return this.user
+  get getUser (): UserType {
+    const empty = {} as UserType
+
+    return this.user || empty
   }
 
-  get isLoggedIn () {
-    return !!this.user.uid
+  get isLoggedIn (): boolean {
+    return !!this.getUser.uid
   }
 }
 

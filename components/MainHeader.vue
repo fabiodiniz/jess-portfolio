@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav.flex.w-full.justify-center.items-center
+  .main-header.flex.w-full.justify-center.items-center
     .social.flex.items-center.space-x-2
       a(
         target="_blank"
@@ -34,33 +34,33 @@
     .menu.flex.flex-col.text-right(
       class="text-sm sm:text-base"
     )
-      a(href="#") about
-      a(href="#") free time
-      a(
-        href="#"
-        @click="$emit('logout')"
+      nuxt-link(to="/") about
+      nuxt-link(to="/") free time
+      nuxt-link(
+        to="/"
+        @click.native="logout"
         v-if="isLoggedIn"
       ) logout
 </template>
 
 <script lang="ts">
+import { useContext } from '@nuxtjs/composition-api'
 import { Vue, Component } from 'vue-property-decorator'
-import { getModule } from 'vuex-module-decorators'
-import User from '~/store/User'
+import useAuth from '~/composables/useAuth'
 
-@Component
-export default class MainHeader extends Vue {
-  loading = false
-  UserStore = getModule(User, this.$store)
+@Component({
+  setup () {
+    const { $fire } = useContext()
+    const ctx = useAuth($fire)
 
-  get isLoggedIn () {
-    return this.UserStore.isLoggedIn
-  }
-}
+    return { ...ctx }
+  },
+})
+export default class MainHeader extends Vue {}
 </script>
 
 <style>
-nav {
+.main-header {
   position: relative;
   font-family: 'Courier Prime', sans-serif;
 }
@@ -75,20 +75,20 @@ nav {
   right: 0;
 }
 
-nav a {
+.main-header a {
   color: #494949;
   position: relative;
 }
 
-nav .menu a:hover {
+.main-header .menu a:hover {
   color: black;
 }
 
-nav .menu a:hover::before {
+.main-header .menu a:hover::before {
   background: black;
 }
 
-nav .menu a::before {
+.main-header .menu a::before {
   content: '';
   height: 2px;
   width: 14px;

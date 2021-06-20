@@ -1,12 +1,16 @@
-export type FirebaseAuth = {
-  authUser?: any
-  claims?: any
-}
-
 export type User = {
   uid?: number
   email?: string
   emailVerified?: string
+  displayName?: string
+  phoneNumber?: string
+  photoURL?: string
+  providerId?: string
+}
+
+export type FirebaseAuth = {
+  authUser?: User | null
+  claims?: any
 }
 
 export type Job = {
