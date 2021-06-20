@@ -1,5 +1,5 @@
 <template lang="pug">
-  .flex.flex-col.items-center.p-8.w-full
+  .flex.flex-col.items-center.w-full
     main-header
 
     horizontal-line

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .line.mt-5.mb-3.w-full
+  .line.my-4.w-full
 </template>
 
 <style>

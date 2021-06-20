@@ -1,26 +1,57 @@
 <template lang="pug">
-  nav.flex.w-full.justify-between.items-center
-    .flex.items-center.space-x-2
-      a(href="https://www.linkedin.com/in/jess-fernandes" target="_blank")
-        img(src="~/static/icon-linkedin.png" srcset="~/static/icon-linkedin@2x.png 2x")
+  nav.flex.w-full.justify-center.items-center
+    .social.flex.items-center.space-x-2
+      a(
+        target="_blank"
+        href="https://www.linkedin.com/in/jess-fernandes"
+      )
+        img(
+          src="~/static/icon-linkedin.png"
+          srcset="~/static/icon-linkedin@2x.png 2x"
+        )
 
-      a(href="mailto:jessfernandes.pp@gmail.com" target="_blank")
-        img(src="~/static/icon-email.png" srcset="~/static/icon-email@2x.png 2x")
+      a(
+        target="_blank"
+        href="mailto:jessfernandes.pp@gmail.com"
+      )
+        img(
+          src="~/static/icon-email.png"
+          srcset="~/static/icon-email@2x.png 2x"
+        )
 
-    .flex.flex-col.text-center
+    .flex.flex-col.items-center
       nuxt-link(to="/")
-        img(src="~/static/jess-logo.png" srcset="~/static/jess-logo@2x.png 2x")
+        img(
+          class="w-40 sm:w-auto"
+          src="~/static/jess-logo.png"
+          srcset="~/static/jess-logo@2x.png 2x"
+        )
 
-      small.text-base.uppercase.mt-1.cursor-default Copywriter
+      small.uppercase.mt-1.cursor-default(
+        class="text-sm sm:text-lg"
+      ) Copywriter
 
-    .menu.flex.flex-col.text-right
+    .menu.flex.flex-col.text-right(
+      class="text-sm sm:text-base"
+    )
       a(href="#") about
       a(href="#") free time
 </template>
 
 <style>
 nav {
+  position: relative;
   font-family: 'Courier Prime', sans-serif;
+}
+
+.social {
+  position: absolute;
+  left: 0;
+}
+
+.menu {
+  position: absolute;
+  right: 0;
 }
 
 nav a {
