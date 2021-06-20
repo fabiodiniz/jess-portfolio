@@ -20,12 +20,13 @@ class User extends VuexModule {
   user: UserType = {}
 
   @Mutation
-  setUser ({ authUser, claims }: FirebaseAuth) {
-    if (!authUser) { return }
-
-    const { uid, email, emailVerified } = authUser
-    this.user = { uid, email, emailVerified }
-    console.log('claims', claims)
+  setUser ({ authUser }: FirebaseAuth) {
+    if (!authUser) {
+      this.user = {}
+    } else {
+      const { uid, email, emailVerified } = authUser
+      this.user = { uid, email, emailVerified }
+    }
   }
 
   @Mutation
@@ -34,8 +35,7 @@ class User extends VuexModule {
   }
 
   @Action
-  changeUser ({ authUser, claims }: FirebaseAuth) {
-    console.log('claims', claims)
+  changeUser ({ authUser }: FirebaseAuth) {
     if (!authUser) {
       // claims = null
       // Perform logout operations

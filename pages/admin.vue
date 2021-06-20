@@ -4,34 +4,33 @@
 
     horizontal-line
 
-    .max-w-sm.w-full.flex.flex-col.items-center
+    form.max-w-sm.w-full.flex.flex-col.items-center(
+      @submit.prevent="auth"
+    )
       custom-input.my-2.w-full(
         placeholder="E-mail"
-        v-model="login"
+        v-model="email"
       )
 
       custom-input.my-2.w-full(
         placeholder="Senha"
+        type="password"
         v-model="password"
       )
 
-      custom-button.my-2(
-        @click=""
-      ) Entrar
+      custom-button.my-2 Entrar
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default Vue.extend({
-  data () {
-    return {
-      login: null,
-      password: null,
-    }
-  },
-  mounted () {
-    console.log('store', this.$store)
+@Component
+export default class Admin extends Vue {
+  email = ''
+  password = ''
+
+  auth () {
+    this.$fire.auth.signInWithEmailAndPassword(this.email, this.password)
   }
-})
+}
 </script>

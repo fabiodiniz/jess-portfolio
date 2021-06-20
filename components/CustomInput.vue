@@ -3,7 +3,7 @@
     type="text"
     :value="value"
     :placeholder="placeholder"
-    @input="$emit('input', value)"
+    @input="event => $emit('input', event.target.value)"
     class="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none"
   )
 </template>

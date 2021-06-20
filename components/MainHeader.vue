@@ -36,7 +36,27 @@
     )
       a(href="#") about
       a(href="#") free time
+      a(
+        href="#"
+        @click="logout"
+        v-if="getUser.uid"
+      ) logout
 </template>
+
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+
+@Component
+export default class MainHeader extends Vue {
+  get getUser () {
+    return this.$store.getters['user/getUser']
+  }
+
+  logout () {
+    return this.$fire.auth.signOut()
+  }
+}
+</script>
 
 <style>
 nav {
