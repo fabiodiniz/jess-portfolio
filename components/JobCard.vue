@@ -1,5 +1,5 @@
 <template lang="pug">
-  nuxt-link(:to="`/job/${job.slug}`")
+  nuxt-link(:to="`/dev/job/${job.slug}`")
     .job-card
       img(:src="job.cover")
       .title.flex.flex-col.items-end.justify-end.p-8.text-4xl.uppercase

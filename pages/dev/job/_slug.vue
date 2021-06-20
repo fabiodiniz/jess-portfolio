@@ -1,11 +1,13 @@
 <template lang="pug">
-  .flex.flex-col.items-center.w-full
+  .flex.flex-col.items-center.w-full(
+    :class="{ 'animate-pulse': loadingJobs }"
+  )
     main-header
 
     horizontal-line
 
     .job-info.flex.flex-row.items-center.w-full.my-4
-      nuxt-link(to="/")
+      nuxt-link(to="/dev")
         img(
           alt="Voltar"
           title="Voltar"

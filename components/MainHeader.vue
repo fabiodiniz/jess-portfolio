@@ -1,26 +1,9 @@
 <template lang="pug">
   .main-header.flex.w-full.justify-center.items-center
-    .social.flex.items-center.space-x-2
-      a(
-        target="_blank"
-        href="https://www.linkedin.com/in/jess-fernandes"
-      )
-        img(
-          src="~/static/icon-linkedin.png"
-          srcset="~/static/icon-linkedin@2x.png 2x"
-        )
-
-      a(
-        target="_blank"
-        href="mailto:jessfernandes.pp@gmail.com"
-      )
-        img(
-          src="~/static/icon-email.png"
-          srcset="~/static/icon-email@2x.png 2x"
-        )
+    social-links
 
     .flex.flex-col.items-center
-      nuxt-link(to="/")
+      nuxt-link(to="/dev")
         img(
           class="w-40 sm:w-auto"
           src="~/static/jess-logo.png"
@@ -34,10 +17,10 @@
     .menu.flex.flex-col.text-right(
       class="text-sm sm:text-base"
     )
-      nuxt-link(to="/") about
-      nuxt-link(to="/") free time
+      nuxt-link(to="/dev") about
+      nuxt-link(to="/dev") free time
       nuxt-link(
-        to="/"
+        to="/dev"
         @click.native="logout"
         v-show="isLoggedIn"
       ) logout
@@ -59,7 +42,7 @@ import useAuth from '~/composables/useAuth'
 export default class MainHeader extends Vue {}
 </script>
 
-<style>
+<style scoped>
 .main-header {
   position: relative;
   font-family: 'Courier Prime', sans-serif;
