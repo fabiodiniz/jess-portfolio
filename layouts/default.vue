@@ -2,7 +2,7 @@
   #jess-portfolio.flex.flex-col.items-center.mx-auto(
     class="p-2 pt-5 md:p-7 md:pt-6"
   )
-    nuxt
+    nuxt(keep-alive)
 </template>
 
 <style>

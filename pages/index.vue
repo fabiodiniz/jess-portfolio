@@ -4,12 +4,21 @@
 
     horizontal-line
 
-    job-list(:jobs="[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]")
+    job-list(:jobs="getJobs")
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { useContext } from '@nuxtjs/composition-api'
+import { Vue, Component } from 'nuxt-property-decorator'
+import useJobs from '~/composables/useJobs'
 
-@Component
+@Component({
+  setup () {
+    const { $fire } = useContext()
+    const ctx = useJobs($fire, true)
+
+    return { ...ctx }
+  },
+})
 export default class Home extends Vue {}
 </script>

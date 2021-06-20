@@ -1,5 +1,6 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { FirebaseAuth, User as UserType } from '~/types'
+
 @Module({
   name: 'User',
   stateFactory: true,

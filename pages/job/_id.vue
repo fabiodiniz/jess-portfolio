@@ -15,7 +15,7 @@
 
       copy-text(:text="getUrl()")
         .text-3xl.mx-4.uppercase.font-black
-          i Job {{ $route.params.id }}
+          i {{ $route.params.slug }}
 
       spacer
 
@@ -31,10 +31,19 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { useContext } from '@nuxtjs/composition-api'
+import { Vue, Component } from 'nuxt-property-decorator'
+import useJobs from '~/composables/useJobs'
 
-@Component
-export default class Home extends Vue {
+@Component({
+  setup () {
+    const { $fire } = useContext()
+    const ctx = useJobs($fire)
+
+    return { ...ctx }
+  },
+})
+export default class Job extends Vue {
   getUrl () {
     return process.browser
       ? window.document.location.href

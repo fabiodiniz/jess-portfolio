@@ -15,9 +15,9 @@ export type FirebaseAuth = {
 
 export type Job = {
   uid?: number
+  cover?: string
   slug?: string
   title?: string
-  cover?: string
   tags?: string[]
   content?: string
-}
+} | null

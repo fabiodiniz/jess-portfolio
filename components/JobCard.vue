@@ -1,10 +1,10 @@
 <template lang="pug">
-  nuxt-link(:to="`/job/${job.id}`")
+  nuxt-link(:to="`/job/${job.slug}`")
     .job-card
-      img(:src="require(`~/static/job${job.id}.png`)")
+      img(:src="job.cover")
       .title.flex.flex-col.items-end.justify-end.p-8.text-4xl.uppercase
         strong
-          i Job {{ job.id }}
+          i {{ job.title }}
 </template>
 
 <script lang="ts">
