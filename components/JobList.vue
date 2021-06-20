@@ -8,14 +8,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Job } from '~/types'
 
-export default Vue.extend({
-  props: {
-    jobs: {
-      type: Array,
-      default: () => [],
-    },
-  },
-})
+@Component
+export default class JobContent extends Vue {
+  @Prop(Array) jobs: Job[] | undefined
+}
 </script>

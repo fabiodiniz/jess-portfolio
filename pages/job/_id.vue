@@ -31,15 +31,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 
-export default Vue.extend({
-  methods: {
-    getUrl () {
-      return process.browser
-        ? window.document.location.href
-        : ''
-    },
-  },
-})
+@Component
+export default class Home extends Vue {
+  getUrl () {
+    return process.browser
+      ? window.document.location.href
+      : ''
+  }
+}
 </script>

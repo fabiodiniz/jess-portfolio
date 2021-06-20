@@ -12,6 +12,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    curly: ['error', 'multi-line'],
     'comma-dangle': ['error', 'always-multiline'],
     'import/no-mutable-exports': 'off',
   },

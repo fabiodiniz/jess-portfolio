@@ -8,16 +8,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-export default Vue.extend({
-  props: {
-    job: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-})
+@Component
+export default class JobCard extends Vue {
+  @Prop(Object) job: any | undefined
+}
 </script>
 
 <style>

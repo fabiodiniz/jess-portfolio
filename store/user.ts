@@ -11,17 +11,11 @@ class User extends VuexModule {
 
   @Mutation
   setUser ({ authUser }: FirebaseAuth) {
-    if (!authUser) {
-      this.user = {}
-    } else {
+    if (!authUser) this.user = {}
+    else {
       const { uid, email, emailVerified } = authUser
       this.user = { uid, email, emailVerified }
     }
-  }
-
-  @Mutation
-  resetUser () {
-    this.user = {}
   }
 
   @Action

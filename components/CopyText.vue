@@ -4,28 +4,25 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-export default Vue.extend({
-  props: {
-    text: {
-      type: String,
-      default: '',
-    },
-  },
-  methods: {
-    copy () {
-      const url = this.text
-      const dummy = document.createElement('textarea')
-      document.body.appendChild(dummy)
-      dummy.value = url
-      dummy.select()
-      document.execCommand('copy')
-      document.body.removeChild(dummy)
-      window.alert('O link foi copiado')
-    },
-  },
-})
+@Component
+export default class CustomButton extends Vue {
+  @Prop(String) text: string | undefined
+
+  copy () {
+    if (!this.text) return
+
+    const url = this.text
+    const dummy = document.createElement('textarea')
+    document.body.appendChild(dummy)
+    dummy.value = url
+    dummy.select()
+    document.execCommand('copy')
+    document.body.removeChild(dummy)
+    window.alert('O link foi copiado')
+  }
+}
 </script>
 
 <style>

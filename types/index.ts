@@ -8,3 +8,12 @@ export type UserType = {
   email?: string
   emailVerified?: string
 }
+
+export type Job = {
+  uid?: number
+  slug?: string
+  title?: string
+  cover?: string
+  tags?: string[]
+  content?: string
+}
