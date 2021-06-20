@@ -3,24 +3,19 @@
     type="text"
     :value="value"
     :placeholder="placeholder"
-    @input="$emit('input', value)"
+    :disabled="disabled"
+    @input="event => $emit('input', event.target.value)"
     class="focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none"
   )
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-export default Vue.extend({
-  props: {
-    value: {
-      type: String,
-      default: '',
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
-  },
-})
+@Component
+export default class CustomButton extends Vue {
+  @Prop(String) readonly value: String | undefined
+  @Prop(String) readonly placeholder: String | undefined
+  @Prop(Boolean) readonly disabled: Boolean | undefined
+}
 </script>

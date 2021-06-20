@@ -36,7 +36,28 @@
     )
       a(href="#") about
       a(href="#") free time
+      a(
+        href="#"
+        @click="$emit('logout')"
+        v-if="isLoggedIn"
+      ) logout
 </template>
+
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import { getModule } from 'vuex-module-decorators'
+import User from '~/store/User'
+
+@Component
+export default class MainHeader extends Vue {
+  loading = false
+  UserStore = getModule(User, this.$store)
+
+  get isLoggedIn () {
+    return this.UserStore.isLoggedIn
+  }
+}
+</script>
 
 <style>
 nav {
