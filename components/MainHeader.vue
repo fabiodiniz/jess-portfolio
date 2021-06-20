@@ -39,7 +39,7 @@
       nuxt-link(
         to="/"
         @click.native="logout"
-        v-if="isLoggedIn"
+        v-show="isLoggedIn"
       ) logout
 </template>
 

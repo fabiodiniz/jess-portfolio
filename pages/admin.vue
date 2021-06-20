@@ -4,11 +4,11 @@
 
     horizontal-line
 
-    .text-lg(v-if="isLoggedIn")
+    .text-lg(v-show="isLoggedIn")
       .mt-5 Você já está logado
 
     login-form(
-      v-else
+      v-show="!isLoggedIn"
       :loading="loading"
       @submit="login"
     )
