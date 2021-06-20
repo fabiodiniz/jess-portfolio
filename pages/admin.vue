@@ -30,5 +30,8 @@ export default Vue.extend({
       password: null,
     }
   },
+  mounted () {
+    console.log('store', this.$store)
+  }
 })
 </script>
