@@ -15,7 +15,7 @@
 
       copy-text(:text="getUrl()")
         .text-3xl.mx-4.uppercase.font-black
-          i {{ $route.params.slug }}
+          i {{ $route.params.id }}
 
       spacer
 
