@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
-import { FirebaseAuth, UserType } from '~/types'
+import { FirebaseAuth, User as UserType } from '~/types'
 
 @Module({
   name: 'User',
@@ -21,10 +21,9 @@ class User extends VuexModule {
   @Action
   changeUser ({ authUser }: FirebaseAuth) {
     if (!authUser) {
-      // claims = null
-      // Perform logout operations
+      // Usuário fez logout
     } else {
-      // Do something with the authUser and the claims object...
+      // Usuário logou
     }
   }
 

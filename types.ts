@@ -3,7 +3,7 @@ export type FirebaseAuth = {
   claims?: any
 }
 
-export type UserType = {
+export type User = {
   uid?: number
   email?: string
   emailVerified?: string
