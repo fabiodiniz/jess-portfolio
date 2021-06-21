@@ -2,6 +2,7 @@ import {
   Ref,
   ref,
   useFetch,
+  onBeforeUnmount,
 } from '@nuxtjs/composition-api'
 import { NuxtFireInstance } from '@nuxtjs/firebase'
 import { jobs } from '~/store'
@@ -40,6 +41,15 @@ export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
       .collection('jobs')
       .where('slug', '==', slug)
       .get()
+
+    const unsubscribe = job
+      .docs[0]
+      .ref
+      .onSnapshot((snapshot: any) => {
+        console.log('onSnapshot', snapshot)
+      })
+
+    onBeforeUnmount(unsubscribe)
 
     loadingJobs.value = false
     currentJob.value = job.docs[0].data() as Job

@@ -1,6 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { Job } from '~/types'
-// import { vuexfireMutations, firestoreAction } from 'vuexfire'
 
 @Module({
   name: 'Jobs',

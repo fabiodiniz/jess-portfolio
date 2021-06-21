@@ -6,28 +6,7 @@
 
     horizontal-line
 
-    .job-info.flex.flex-row.items-center.w-full.my-4
-      nuxt-link(to="/dev")
-        img(
-          alt="Voltar"
-          title="Voltar"
-          src="~/static/icon-back.png"
-          srcset="~/static/icon-back@2x.png 2x"
-        )
-
-      copy-text(:text="getUrl()")
-        .text-3xl.mx-4.uppercase.font-black
-          i {{ $route.params.slug }}
-
-      spacer
-
-      copy-text(:text="getUrl()")
-        img(
-          src="~/static/icon-copy.png"
-          srcset="~/static/icon-copy@2x.png 2x"
-          title="Copiar link"
-          alt="Copiar link"
-        )
+    page-detail(:title="currentJob.title")
 
     job-content(:job="currentJob")
 </template>
@@ -47,11 +26,5 @@ import useJobs from '~/composables/useJobs'
     return { ...ctx }
   },
 })
-export default class Job extends Vue {
-  getUrl () {
-    return process.browser
-      ? window.document.location.href
-      : ''
-  }
-}
+export default class Job extends Vue {}
 </script>

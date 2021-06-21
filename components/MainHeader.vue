@@ -17,8 +17,8 @@
     .menu.flex.flex-col.text-right(
       class="text-sm sm:text-base"
     )
-      nuxt-link(to="/dev") about
-      nuxt-link(to="/dev") free time
+      nuxt-link(to="/dev/about-me") about me
+      nuxt-link(to="/dev/free-time") free time
       nuxt-link(
         to="/dev"
         @click.native="logout"
