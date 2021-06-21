@@ -12,18 +12,27 @@
 </template>
 
 <script lang="ts">
-import { useContext } from '@nuxtjs/composition-api'
+import {
+  useContext,
+  useFetch,
+  ref,
+  Ref,
+} from '@nuxtjs/composition-api'
 import { Vue, Component } from 'nuxt-property-decorator'
 import useJobs from '~/composables/useJobs'
 
 @Component({
   setup () {
     const { $fire, route } = useContext()
+    const slug = route.value.params.slug
     const ctx = useJobs($fire)
+    const currentJob = ref({} as Job)
 
-    ctx.fetchJob(route.value.params.slug)
+    useFetch(async () => {
+      currentJob.value = await ctx.fetchJob(slug) as Job
+    })
 
-    return { ...ctx }
+    return { ...ctx, currentJob }
   },
 })
 export default class Job extends Vue {}

@@ -1,5 +1,5 @@
 export type User = {
-  uid?: number
+  uid?: string
   email?: string
   emailVerified?: string
   displayName?: string
@@ -14,7 +14,7 @@ export type FirebaseAuth = {
 }
 
 export type Job = {
-  uid?: number
+  uid?: string
   cover?: string
   slug?: string
   title?: string

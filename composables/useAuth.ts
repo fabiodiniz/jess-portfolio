@@ -1,6 +1,4 @@
 import {
-  ComputedRef,
-  Ref,
   ref,
   computed,
 } from '@nuxtjs/composition-api'
@@ -10,8 +8,8 @@ import { LoginPayload } from '~/interfaces'
 import { user } from '~/store'
 
 export default function ($fire: NuxtFireInstance) {
-  const loading: Ref<boolean> = ref(false)
-  const isLoggedIn: ComputedRef<boolean> = computed(() => user.isLoggedIn)
+  const loading = ref(false)
+  const isLoggedIn = computed(() => user.isLoggedIn)
 
   const auth = async (payload: LoginPayload) => {
     return await $fire

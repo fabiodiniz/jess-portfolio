@@ -1,17 +1,15 @@
 import {
-  Ref,
   ref,
   useFetch,
-  onBeforeUnmount,
+  // onDeactivated,
 } from '@nuxtjs/composition-api'
 import { NuxtFireInstance } from '@nuxtjs/firebase'
-import { jobs } from '~/store'
+import { jobs as jobsStore } from '~/store'
 import { Job } from '~/types'
 
 export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
-  const loadingJobs: Ref<boolean> = ref(false)
-  const getJobs: Ref<Job[]> = ref([])
-  const currentJob: Ref<Job | object> = ref({})
+  const loadingJobs = ref(false)
+  const getJobs = ref([] as Job[])
 
   const fetchCollection = async (): Promise<Job[]> => {
     loadingJobs.value = true
@@ -27,7 +25,7 @@ export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
       .docs
       .map((job) => {
         return {
-          id: job.id,
+          uid: job.id,
           ...job.data(),
         } as Job
       })
@@ -42,34 +40,44 @@ export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
       .where('slug', '==', slug)
       .get()
 
-    const unsubscribe = job
-      .docs[0]
-      .ref
-      .onSnapshot((snapshot: any) => {
-        console.log('onSnapshot', snapshot)
-      })
+    const jobRef = job.docs[0].ref
+    const snapshot = await jobRef.get()
+    const jobData = {
+      uid: snapshot.id,
+      ...snapshot.data(),
+    } as Job
 
-    onBeforeUnmount(unsubscribe)
+    jobsStore.setJob(jobData)
+
+    // const unsubscribe = jobRef
+    jobRef.onSnapshot((snapshot) => {
+      const job = {
+        uid: snapshot.id,
+        ...snapshot.data(),
+      } as Job
+
+      jobsStore.setJob(job)
+    })
+    // onDeactivated(unsubscribe)
 
     loadingJobs.value = false
-    currentJob.value = job.docs[0].data() as Job
 
-    return currentJob.value
+    return jobData
   }
 
   const { fetch } = useFetch(async () => {
     if (autoload) {
       const jobDocs = await fetchCollection()
-      jobs.setJobs(jobDocs)
-      getJobs.value = jobs.getJobs
+      jobsStore.setJobs(jobDocs)
+      getJobs.value = jobsStore.getJobs
     }
   })
 
   return {
     loadingJobs,
     getJobs,
-    currentJob,
     fetchJob,
     fetchJobs: fetch,
+    getJob: jobsStore.getJob,
   }
 }
