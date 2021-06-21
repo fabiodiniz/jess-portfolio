@@ -16,7 +16,6 @@ import {
   useContext,
   useFetch,
   ref,
-  Ref,
 } from '@nuxtjs/composition-api'
 import { Vue, Component } from 'nuxt-property-decorator'
 import useJobs from '~/composables/useJobs'

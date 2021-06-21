@@ -5,7 +5,7 @@
     .flex.flex-col.items-center
       nuxt-link(to="/dev")
         img(
-          class="w-40 sm:w-auto"
+          class="w-36 sm:w-auto"
           src="~/static/jess-logo.png"
           srcset="~/static/jess-logo@2x.png 2x"
         )
@@ -50,12 +50,12 @@ export default class MainHeader extends Vue {}
 
 .social {
   position: absolute;
-  left: 0;
+  left: 4px;
 }
 
 .menu {
   position: absolute;
-  right: 0;
+  right: 4px;
 }
 
 .main-header a {

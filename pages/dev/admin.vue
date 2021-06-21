@@ -1,6 +1,6 @@
 <template lang="pug">
   .flex.flex-col.items-center.w-full
-    main-header(@logout="logout")
+    main-header
 
     horizontal-line
 

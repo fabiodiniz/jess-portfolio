@@ -1,5 +1,5 @@
 <template lang="pug">
-  .job-content(v-html="job.content")
+  .job-content.cursor-default(v-html="job.content")
 </template>
 
 <script lang="ts">

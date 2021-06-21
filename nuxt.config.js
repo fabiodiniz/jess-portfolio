@@ -83,7 +83,21 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      lang: 'pt-br',
+      name: 'Jéssica Fernandes',
+    },
+    icon: {
+      purpose: 'maskable',
+      source: 'static/jess.png',
+    },
+    meta: {
+      lang: 'pt-br',
+      mobileApp: true,
+      charset: 'utf-8',
+      mobileAppIOS: true,
+      theme_color: '#FFF',
+      name: 'Jéssica Fernandes',
+      description: 'Copywriter em São Paulo/SP',
     },
   },
 
