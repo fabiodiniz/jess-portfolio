@@ -27,5 +27,5 @@ import useAuth from '~/composables/useAuth'
     return { ...ctx }
   },
 })
-export default class Admin extends Vue {}
+export default class AdminPage extends Vue {}
 </script>

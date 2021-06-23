@@ -15,7 +15,7 @@
 import {
   useContext,
   useFetch,
-  ref,
+  onActivated,
 } from '@nuxtjs/composition-api'
 import { Vue, Component } from 'nuxt-property-decorator'
 import useJobs from '~/composables/useJobs'
@@ -24,15 +24,19 @@ import useJobs from '~/composables/useJobs'
   setup () {
     const { $fire, route } = useContext()
     const slug = route.value.params.slug
-    const ctx = useJobs($fire)
-    const currentJob = ref({} as Job)
+    const jobsCtx = useJobs($fire)
+    const currentJob = jobsCtx.getComputedJob(slug)
 
     useFetch(async () => {
-      currentJob.value = await ctx.fetchJob(slug) as Job
+      await jobsCtx.fetchJob(slug)
     })
 
-    return { ...ctx, currentJob }
+    onActivated(() => {
+      jobsCtx.fetchJob(slug)
+    })
+
+    return { ...jobsCtx, currentJob }
   },
 })
-export default class Job extends Vue {}
+export default class JobPage extends Vue {}
 </script>

@@ -11,5 +11,5 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component
-export default class AboutMe extends Vue {}
+export default class AboutMePage extends Vue {}
 </script>

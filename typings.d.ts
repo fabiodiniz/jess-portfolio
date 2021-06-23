@@ -1,4 +1,14 @@
-export type User = {
+declare module '@ckeditor/ckeditor5-vue2' {
+  const CKEditorVue: any
+  export = CKEditorVue
+}
+
+declare module '@ckeditor/ckeditor5-build-classic' {
+  const ClassicEditorBuild: any
+  export = ClassicEditorBuild
+}
+
+type User = {
   uid?: string
   email?: string
   emailVerified?: string
@@ -8,16 +18,16 @@ export type User = {
   providerId?: string
 }
 
-export type FirebaseAuth = {
+type FirebaseAuth = {
   authUser?: User | null
   claims?: any
 }
 
-export type Job = {
+type Job = {
   uid?: string
   cover?: string
   slug?: string
   title?: string
   tags?: string[]
   content?: string
-} | null
+} | undefined

@@ -1,35 +1,12 @@
 import {
+  computed,
   ref,
-  useFetch,
-  // onDeactivated,
 } from '@nuxtjs/composition-api'
 import { NuxtFireInstance } from '@nuxtjs/firebase'
 import { jobs as jobsStore } from '~/store'
-import { Job } from '~/types'
 
-export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
+export default function ($fire: NuxtFireInstance) {
   const loadingJobs = ref(false)
-  const getJobs = ref([] as Job[])
-
-  const fetchCollection = async (): Promise<Job[]> => {
-    loadingJobs.value = true
-
-    const jobs = await $fire
-      .firestore
-      .collection('jobs')
-      .get()
-
-    loadingJobs.value = false
-
-    return jobs
-      .docs
-      .map((job) => {
-        return {
-          uid: job.id,
-          ...job.data(),
-        } as Job
-      })
-  }
 
   const fetchJob = async (slug: string) => {
     loadingJobs.value = true
@@ -50,34 +27,65 @@ export default function ($fire: NuxtFireInstance, autoload: boolean = false) {
     jobsStore.setJob(jobData)
 
     // const unsubscribe = jobRef
-    jobRef.onSnapshot((snapshot) => {
-      const job = {
-        uid: snapshot.id,
-        ...snapshot.data(),
-      } as Job
+    if (process.browser) {
+      jobRef.onSnapshot((snapshot) => {
+        const newJob = {
+          uid: snapshot.id,
+          ...snapshot.data(),
+        } as Job
 
-      jobsStore.setJob(job)
-    })
+        jobsStore.setJob(newJob)
+      })
+    }
     // onDeactivated(unsubscribe)
 
     loadingJobs.value = false
 
-    return jobData
+    return jobsStore.getJob(slug)
   }
 
-  const { fetch } = useFetch(async () => {
-    if (autoload) {
-      const jobDocs = await fetchCollection()
-      jobsStore.setJobs(jobDocs)
-      getJobs.value = jobsStore.getJobs
-    }
+  const fetchJobs = async () => {
+    loadingJobs.value = true
+
+    const jobDocs = await fetchCollection()
+    jobsStore.setJobs(jobDocs)
+
+    loadingJobs.value = false
+
+    return jobsStore.getJobs
+  }
+
+  const fetchCollection = async () => {
+    const jobs = await $fire
+      .firestore
+      .collection('jobs')
+      .get()
+
+    return jobs
+      .docs
+      .map((job) => {
+        return {
+          uid: job.id,
+          ...job.data(),
+        } as Job
+      })
+  }
+
+  const getComputedJobs = computed({
+    get: () => jobsStore.getJobs || [] as Job[],
+    set: () => {},
+  })
+
+  const getComputedJob = (slug: string) => computed({
+    get: () => jobsStore.getJob(slug) || {} as Job,
+    set: () => {},
   })
 
   return {
     loadingJobs,
-    getJobs,
     fetchJob,
-    fetchJobs: fetch,
-    getJob: jobsStore.getJob,
+    fetchJobs,
+    getComputedJob,
+    getComputedJobs,
   }
 }

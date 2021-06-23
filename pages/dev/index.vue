@@ -6,21 +6,34 @@
 
     horizontal-line
 
-    job-list(:jobs="getJobs")
+    job-list(:jobs="jobs")
 </template>
 
 <script lang="ts">
-import { useContext } from '@nuxtjs/composition-api'
+import {
+  useContext,
+  useFetch,
+  onActivated,
+} from '@nuxtjs/composition-api'
 import { Vue, Component } from 'nuxt-property-decorator'
 import useJobs from '~/composables/useJobs'
 
 @Component({
   setup () {
     const { $fire } = useContext()
-    const ctx = useJobs($fire, true)
+    const jobsCtx = useJobs($fire)
+    const jobs = jobsCtx.getComputedJobs
 
-    return { ...ctx }
+    useFetch(async () => {
+      await jobsCtx.fetchJobs()
+    })
+
+    onActivated(() => {
+      jobsCtx.fetchJobs()
+    })
+
+    return { ...jobsCtx, jobs }
   },
 })
-export default class Home extends Vue {}
+export default class HomePage extends Vue {}
 </script>

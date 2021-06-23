@@ -11,5 +11,5 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component
-export default class FreeTime extends Vue {}
+export default class FreeTimePage extends Vue {}
 </script>

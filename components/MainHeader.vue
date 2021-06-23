@@ -2,15 +2,14 @@
   .main-header.flex.w-full.justify-center.items-center
     social-links
 
-    .flex.flex-col.items-center
-      nuxt-link(to="/dev")
-        img(
-          class="w-36 sm:w-auto"
-          src="~/static/jess-logo.png"
-          srcset="~/static/jess-logo@2x.png 2x"
-        )
+    nuxt-link.flex.flex-col.items-center(to="/dev")
+      img(
+        class="w-36 sm:w-auto"
+        src="~/static/jess-logo.png"
+        srcset="~/static/jess-logo@2x.png 2x"
+      )
 
-      small.uppercase.mt-1.cursor-default(
+      small.uppercase.mt-1(
         class="text-sm sm:text-lg"
       ) Copywriter
 

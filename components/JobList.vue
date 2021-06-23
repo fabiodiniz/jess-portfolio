@@ -9,10 +9,9 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { Job } from '~/types'
 
 @Component
-export default class JobContent extends Vue {
+export default class JobList extends Vue {
   @Prop(Array) jobs: Job[] | undefined
 }
 </script>

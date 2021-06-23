@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { Job } from '~/types'
 
 @Component
 export default class JobContent extends Vue {

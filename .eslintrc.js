@@ -15,5 +15,6 @@ module.exports = {
     curly: ['error', 'multi-line'],
     'comma-dangle': ['error', 'always-multiline'],
     'import/no-mutable-exports': 'off',
+    'brace-style': ['error', 'stroustrup'],
   },
 }
