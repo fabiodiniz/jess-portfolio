@@ -1,5 +1,5 @@
 <template lang="pug">
-  .flex.flex-col.items-center.w-full(
+  .flex.flex-col.items-center.items-stretch.w-full(
     :class="{ 'animate-pulse': loadingJobs }"
   )
     main-header

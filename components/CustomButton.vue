@@ -2,6 +2,7 @@
   button.text-xs.bg-gray-200.text-gray-600.border.border-gray-200.rounded-md.py-2.px-5.font-bold.uppercase(
     :type="type"
     :disabled="disabled"
+    @click="e => $emit('click', e)"
   )
     slot(name="default")
 </template>

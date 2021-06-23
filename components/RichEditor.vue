@@ -1,11 +1,12 @@
 <template lang="pug">
   .rich-editor
-    ckeditor(
-      :editor="editor"
-      :value="value"
-      :config="editorConfig"
-      @input="ev => $emit('input', ev)"
-    )
+    client-only
+      ckeditor(
+        :editor="editor"
+        :value="value"
+        :config="editorConfig"
+        @input="ev => $emit('input', ev)"
+      )
 </template>
 
 <script lang="ts">

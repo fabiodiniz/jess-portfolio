@@ -12,13 +12,13 @@ export default function ($fire: NuxtFireInstance) {
   const fetchJob = async (slug: string) => {
     loadingJobs.value = true
 
-    const job = await $fire
+    const jobQuery = await $fire
       .firestore
       .collection('jobs')
       .where('slug', '==', slug)
       .get()
 
-    const jobRef = job.docs[0].ref
+    const jobRef = jobQuery.docs[0].ref
     const snapshot = await jobRef.get()
     const jobData = {
       uid: snapshot.id,
@@ -73,6 +73,29 @@ export default function ($fire: NuxtFireInstance) {
       })
   }
 
+  const updateJob = async (job: Job) => {
+    if (!job) return
+
+    console.log(job)
+
+    try {
+      const jobQuery = await $fire
+        .firestore
+        .collection('jobs')
+        .where('slug', '==', job.slug || '')
+        .get()
+
+      console.log(jobQuery.docs)
+      jobQuery
+        .docs[0]
+        .ref
+        .set({ ...job })
+    }
+    catch (e) {
+      console.error(e)
+    }
+  }
+
   const getComputedJobs = computed({
     get: () => jobsStore.getJobs || [] as Job[],
     set: () => {},
@@ -85,6 +108,7 @@ export default function ($fire: NuxtFireInstance) {
 
   return {
     loadingJobs,
+    updateJob,
     fetchJob,
     fetchJobs,
     getComputedJob,
