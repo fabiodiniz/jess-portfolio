@@ -74,9 +74,7 @@ export default function ($fire: NuxtFireInstance) {
   }
 
   const updateJob = async (job: Job) => {
-    if (!job) return
-
-    console.log(job)
+    if (!job) return false
 
     try {
       const jobQuery = await $fire
@@ -85,14 +83,13 @@ export default function ($fire: NuxtFireInstance) {
         .where('slug', '==', job.slug || '')
         .get()
 
-      console.log(jobQuery.docs)
-      jobQuery
+      return jobQuery
         .docs[0]
         .ref
         .set({ ...job })
     }
     catch (e) {
-      console.error(e)
+      return false
     }
   }
 

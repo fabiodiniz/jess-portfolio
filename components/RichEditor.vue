@@ -5,6 +5,7 @@
         :editor="editor"
         :value="value"
         :config="editorConfig"
+        @ready="ready"
         @input="ev => $emit('input', ev)"
       )
 </template>
@@ -13,6 +14,7 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import CKEditor from '@ckeditor/ckeditor5-vue2'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import UploadAdaptor from '~/assets/UploadAdaptor'
 
 @Component({
   components: {
@@ -21,7 +23,20 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
   setup (props) {
     const editorConfig = props.options
 
-    return { editorConfig, editor: ClassicEditor }
+    const ready = (editor: any) => {
+      editor
+        .plugins
+        .get('FileRepository')
+        .createUploadAdapter = (loader: any) => {
+          return new UploadAdaptor(loader)
+        }
+    }
+
+    return {
+      ready,
+      editorConfig,
+      editor: ClassicEditor,
+    }
   },
 })
 export default class RichEditor extends Vue {
