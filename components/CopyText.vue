@@ -8,7 +8,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class CustomButton extends Vue {
-  @Prop(String) text: string | undefined
+  @Prop(String) readonly text?: string
 
   copy () {
     if (!this.text) return

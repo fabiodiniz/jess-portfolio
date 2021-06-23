@@ -5,6 +5,7 @@
         :editor="editor"
         :value="value"
         :config="editorConfig"
+        :disabled="disabled"
         @ready="ready"
         @input="ev => $emit('input', ev)"
       )
@@ -13,7 +14,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import CKEditor from '@ckeditor/ckeditor5-vue2'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import ClassicInline from '@ckeditor/ckeditor5-build-inline'
 import UploadAdaptor from '~/assets/UploadAdaptor'
 
 @Component({
@@ -35,12 +36,23 @@ import UploadAdaptor from '~/assets/UploadAdaptor'
     return {
       ready,
       editorConfig,
-      editor: ClassicEditor,
+      editor: ClassicInline,
     }
   },
 })
 export default class RichEditor extends Vue {
-  @Prop(String) value: string | undefined
-  @Prop({ default: () => ({}) }) options: object | undefined
+  @Prop(String) readonly value?: string
+  @Prop(Boolean) readonly disabled?: boolean
+  @Prop({ default: () => ({}) }) readonly options?: object
 }
 </script>
+
+<style scoped>
+.ck.ck-editor__editable_inline > :first-child {
+  margin-top: 0 !important;
+}
+
+.ck.ck-editor__editable_inline {
+  padding: 0 !important;
+}
+</style>

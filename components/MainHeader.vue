@@ -19,7 +19,7 @@
       nuxt-link(to="/dev/about-me") about me
       nuxt-link(to="/dev/free-time") free time
       nuxt-link(
-        to="/dev"
+        to="#"
         @click.native="logout"
         v-show="isLoggedIn"
       ) logout

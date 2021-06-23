@@ -3,9 +3,9 @@ declare module '@ckeditor/ckeditor5-vue2' {
   export = CKEditorVue
 }
 
-declare module '@ckeditor/ckeditor5-build-classic' {
-  const ClassicEditorBuild: any
-  export = ClassicEditorBuild
+declare module '@ckeditor/ckeditor5-build-inline' {
+  const ClassicInlineBuild: any
+  export = ClassicInlineBuild
 }
 
 interface LoginPayload {

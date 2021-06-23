@@ -27,7 +27,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class JobContent extends Vue {
-  @Prop(String) title: string | undefined
+  @Prop(String) readonly title?: string
 
   getUrl () {
     return process.browser

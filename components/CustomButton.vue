@@ -12,8 +12,8 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class CustomButton extends Vue {
-  @Prop(String) readonly type: String | undefined
-  @Prop(Boolean) readonly disabled: Boolean | undefined
+  @Prop(String) readonly type?: String
+  @Prop(Boolean) readonly disabled?: Boolean
 }
 </script>
 

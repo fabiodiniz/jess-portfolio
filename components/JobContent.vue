@@ -1,21 +1,16 @@
 <template lang="pug">
-  .job-content.cursor-default
+  .job-content
     .flex.flex-row.justify-end.mb-3
       custom-button(
         v-show="isLoggedIn"
+        :disabled="saving"
         @click="publish"
-      )
-        template(v-if="editing") Publicar
-        template(v-else) Editar
-
-    .text-justify(
-      v-show="!editing"
-      v-html="job.content"
-    )
+      ) Publicar
 
     client-only
       rich-editor.flex-grow(
-        v-show="editing"
+        :class="{ 'cursor-default': !isLoggedIn }"
+        :disabled="!isLoggedIn"
         :value="job.content"
         @input="onInput"
       )
@@ -31,7 +26,6 @@ import useJobs from '~/composables/useJobs'
   setup (props) {
     const { $fire } = useContext()
     const job: Job = props.job as Job
-    const editing: Ref<boolean> = ref(false)
     const saving: Ref<boolean> = ref(false)
     const newContent: Ref<string> = ref(job?.content || '')
     const { updateJob } = useJobs($fire)
@@ -45,11 +39,11 @@ import useJobs from '~/composables/useJobs'
       await updateJob(newJob)
     }
 
-    const publish = () => {
+    const publish = async () => {
       saving.value = true
-      editing.value = !editing.value
-      updateContent(newContent.value)
+      await updateContent(newContent.value)
       saving.value = false
+      window.alert('O Job foi atualizado!')
     }
 
     const onInput = (content: string) => {
@@ -58,7 +52,6 @@ import useJobs from '~/composables/useJobs'
 
     return {
       ...useAuth($fire),
-      editing,
       publish,
       onInput,
       updateJob,
@@ -67,6 +60,6 @@ import useJobs from '~/composables/useJobs'
   },
 })
 export default class JobContent extends Vue {
-  @Prop(Object) job: Job | undefined
+  @Prop(Object) readonly job?: Job
 }
 </script>

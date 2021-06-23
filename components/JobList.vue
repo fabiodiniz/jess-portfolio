@@ -12,6 +12,6 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class JobList extends Vue {
-  @Prop(Array) jobs: Job[] | undefined
+  @Prop(Array) readonly jobs?: Job[]
 }
 </script>

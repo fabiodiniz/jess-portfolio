@@ -12,7 +12,7 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class JobCard extends Vue {
-  @Prop(Object) job: any | undefined
+  @Prop(Object) readonly job?: any
 }
 </script>
 

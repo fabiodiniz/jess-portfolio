@@ -32,7 +32,7 @@ export default class LoginForm extends Vue {
   password = ''
   UserStore = getModule(User, this.$store)
 
-  @Prop(Boolean) loading: Boolean | undefined
+  @Prop(Boolean) readonly loading?: Boolean
 
   get isDisabled () {
     return this.loading || !this.email || !this.password
