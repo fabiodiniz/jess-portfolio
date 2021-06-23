@@ -1,6 +1,6 @@
 <template lang="pug">
   .flex.flex-row.items-center.w-full.my-4
-    nuxt-link(to="/dev")
+    nuxt-link(to="/")
       img(
         alt="Voltar"
         title="Voltar"

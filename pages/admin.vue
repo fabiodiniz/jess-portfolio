@@ -27,7 +27,7 @@ import useAuth from '~/composables/useAuth'
 
     const submit = async (payload: LoginPayload) => {
       await authCtx.login(payload)
-      router.push('/dev')
+      router.push('/')
     }
 
     return { ...authCtx, submit }

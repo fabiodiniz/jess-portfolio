@@ -2,7 +2,7 @@
   .main-header.flex.w-full.justify-center.items-center
     social-links
 
-    nuxt-link.flex.flex-col.items-center(to="/dev")
+    nuxt-link.flex.flex-col.items-center(to="/")
       img(
         class="w-36 sm:w-auto"
         src="~/static/jess-logo.png"
@@ -16,8 +16,8 @@
     .menu.flex.flex-col.text-right(
       class="text-sm sm:text-base"
     )
-      nuxt-link(to="/dev/about-me") about me
-      nuxt-link(to="/dev/free-time") free time
+      nuxt-link(to="/about-me") about me
+      nuxt-link(to="/free-time") free time
       nuxt-link(
         to="#"
         @click.native="logout"
