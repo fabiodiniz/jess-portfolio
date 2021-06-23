@@ -1,5 +1,5 @@
 <template lang="pug">
-  .rich-editor
+  .rich-editor(:class="{ disabled }")
     client-only
       ckeditor(
         :editor="editor"
@@ -47,12 +47,23 @@ export default class RichEditor extends Vue {
 }
 </script>
 
-<style scoped>
+<style>
 .ck.ck-editor__editable_inline > :first-child {
   margin-top: 0 !important;
 }
 
 .ck.ck-editor__editable_inline {
   padding: 0 !important;
+}
+
+.ck-content .table table td,
+.ck-content .table table th,
+.ck .ck-editor__nested-editable,
+.ck-content .table table {
+  border: 0 solid white !important;
+}
+
+.rich-editor.disabled .ck .ck-widget__selection-handle {
+  display: none;
 }
 </style>
