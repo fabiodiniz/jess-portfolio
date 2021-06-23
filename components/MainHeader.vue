@@ -33,9 +33,7 @@ import useAuth from '~/composables/useAuth'
 @Component({
   setup () {
     const { $fire } = useContext()
-    const ctx = useAuth($fire)
-
-    return { ...ctx }
+    return { ...useAuth($fire) }
   },
 })
 export default class MainHeader extends Vue {}

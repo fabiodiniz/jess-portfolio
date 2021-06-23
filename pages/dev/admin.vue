@@ -10,21 +10,27 @@
     login-form(
       v-show="!isLoggedIn"
       :loading="loading"
-      @submit="login"
+      @submit="submit"
     )
 </template>
 
 <script lang="ts">
-import { useContext } from '@nuxtjs/composition-api'
+import { useContext, useRouter } from '@nuxtjs/composition-api'
 import { Vue, Component } from 'nuxt-property-decorator'
 import useAuth from '~/composables/useAuth'
 
 @Component({
   setup () {
     const { $fire } = useContext()
-    const ctx = useAuth($fire)
+    const authCtx = useAuth($fire)
+    const router = useRouter()
 
-    return { ...ctx }
+    const submit = async (payload: LoginPayload) => {
+      await authCtx.login(payload)
+      router.push('/dev')
+    }
+
+    return { ...authCtx, submit }
   },
 })
 export default class AdminPage extends Vue {}

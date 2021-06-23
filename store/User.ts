@@ -35,7 +35,8 @@ export default class UserStore extends VuexModule {
   changeUser ({ authUser }: FirebaseAuth) {
     if (!authUser) {
       // Usuário fez logout
-    } else {
+    }
+    else {
       // Usuário logou
     }
   }

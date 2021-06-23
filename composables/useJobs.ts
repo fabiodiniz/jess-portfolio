@@ -1,5 +1,6 @@
 import {
   computed,
+  // onDeactivated,
   ref,
 } from '@nuxtjs/composition-api'
 import { NuxtFireInstance } from '@nuxtjs/firebase'
@@ -26,8 +27,8 @@ export default function ($fire: NuxtFireInstance) {
 
     jobsStore.setJob(jobData)
 
-    // const unsubscribe = jobRef
     if (process.browser) {
+      // const unsubscribe = jobRef.onSnapshot((snapshot) => {
       jobRef.onSnapshot((snapshot) => {
         const newJob = {
           uid: snapshot.id,
@@ -36,8 +37,9 @@ export default function ($fire: NuxtFireInstance) {
 
         jobsStore.setJob(newJob)
       })
+
+      // onDeactivated(unsubscribe)
     }
-    // onDeactivated(unsubscribe)
 
     loadingJobs.value = false
 

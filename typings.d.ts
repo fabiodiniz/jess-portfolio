@@ -8,6 +8,11 @@ declare module '@ckeditor/ckeditor5-build-classic' {
   export = ClassicEditorBuild
 }
 
+interface LoginPayload {
+  email: string
+  password: string
+}
+
 type User = {
   uid?: string
   email?: string

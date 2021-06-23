@@ -3,13 +3,11 @@ import {
   computed,
 } from '@nuxtjs/composition-api'
 import { NuxtFireInstance } from '@nuxtjs/firebase'
-import { delay } from '~/utils'
-import { LoginPayload } from '~/interfaces'
-import { user } from '~/store'
+import { user as userStore } from '~/store'
 
 export default function ($fire: NuxtFireInstance) {
   const loading = ref(false)
-  const isLoggedIn = computed(() => user.isLoggedIn)
+  const isLoggedIn = computed(() => userStore.isLoggedIn)
 
   const auth = async (payload: LoginPayload) => {
     return await $fire
@@ -20,7 +18,6 @@ export default function ($fire: NuxtFireInstance) {
   const login = async (payload: LoginPayload) => {
     loading.value = true
     await auth(payload)
-    await delay(500)
     loading.value = false
   }
 
@@ -31,6 +28,7 @@ export default function ($fire: NuxtFireInstance) {
   }
 
   return {
+    auth,
     login,
     logout,
     loading,

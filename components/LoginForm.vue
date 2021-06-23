@@ -25,7 +25,6 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import { getModule } from 'vuex-module-decorators'
 import User from '~/store/User'
-import { LoginPayload } from '~/interfaces'
 
 @Component
 export default class LoginForm extends Vue {
