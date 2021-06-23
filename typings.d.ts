@@ -35,4 +35,5 @@ type Job = {
   title?: string
   tags?: string[]
   content?: string
+  position?: string
 } | undefined

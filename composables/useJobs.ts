@@ -61,6 +61,7 @@ export default function ($fire: NuxtFireInstance) {
     const jobs = await $fire
       .firestore
       .collection('jobs')
+      .orderBy('position')
       .get()
 
     return jobs
