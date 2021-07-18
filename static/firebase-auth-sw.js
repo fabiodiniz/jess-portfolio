@@ -1,10 +1,10 @@
 const ignorePaths = ["\u002F__webpack_hmr","\u002F_loading","\u002F_nuxt\u002F"]
 
 importScripts(
-  'https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js'
+  'https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js'
 )
 importScripts(
-  'https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js'
+  'https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js'
 )
 firebase.initializeApp({"apiKey":"AIzaSyAaLM2ouihUtO70itQhquX5er0DU9Z-WVA","authDomain":"portfolio-jazz.firebaseapp.com","projectId":"portfolio-jazz","storageBucket":"portfolio-jazz.appspot.com","messagingSenderId":"1067913269806","appId":"1:1067913269806:web:8e4b1dd43f16748b3d05bf","measurementId":"G-R7SDNM3Q0X"})
 
