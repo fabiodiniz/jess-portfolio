@@ -33,7 +33,7 @@ import 'grapesjs/dist/css/grapes.min.css'
 
           editor.setComponents(props.value)
 
-          editor.on('update', (a, b, c) => {
+          editor.on('update', () => {
             emit('input', editor.getHtml())
           })
         }, 0)
