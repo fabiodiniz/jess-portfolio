@@ -1,43 +1,44 @@
 <template lang="pug">
   .rich-editor(:class="{ disabled }")
-    client-only
-      ckeditor(
-        :editor="editor"
-        :value="value"
-        :config="editorConfig"
-        :disabled="disabled"
-        @ready="ready"
-        @input="ev => $emit('input', ev)"
-      )
+    .content(
+      v-if="disabled"
+      v-html="value"
+    )
+
+    client-only(v-else)
+      #grapejs
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import CKEditor from '@ckeditor/ckeditor5-vue2'
-import ClassicInline from '@ckeditor/ckeditor5-build-inline'
-import UploadAdaptor from '~/assets/UploadAdaptor'
+import {
+  onMounted,
+} from '@nuxtjs/composition-api'
+// @ts-ignore
+import grapesjs from 'grapesjs'
+// @ts-ignore
+import gjsPresetWebpage from 'grapesjs-preset-webpage'
+import 'grapesjs/dist/css/grapes.min.css'
 
 @Component({
-  components: {
-    ckeditor: CKEditor.component,
-  },
-  setup (props) {
-    const editorConfig = props.options
+  setup (props, { emit }) {
+    onMounted(() => {
+      if (process.client) {
+        setTimeout(() => {
+          const editor = grapesjs.init({
+            container: '#grapejs',
+            components: props.value,
+            plugins: [gjsPresetWebpage],
+          })
 
-    const ready = (editor: any) => {
-      editor
-        .plugins
-        .get('FileRepository')
-        .createUploadAdapter = (loader: any) => {
-          return new UploadAdaptor(loader)
-        }
-    }
+          editor.setComponents(props.value)
 
-    return {
-      ready,
-      editorConfig,
-      editor: ClassicInline,
-    }
+          editor.on('update', (a, b, c) => {
+            emit('input', editor.getHtml())
+          })
+        }, 0)
+      }
+    })
   },
 })
 export default class RichEditor extends Vue {
