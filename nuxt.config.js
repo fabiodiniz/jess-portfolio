@@ -88,7 +88,6 @@ export default {
       name: 'Jéssica Fernandes',
     },
     icon: {
-      purpose: 'maskable',
       source: 'static/jess.png',
     },
     meta: {

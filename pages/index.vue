@@ -1,29 +1,39 @@
 <template lang="pug">
-  .flex.flex-col.items-center.justify-center.w-full.h-screen
-    nuxt-link(to="/dev")
-      img(
-        class="w-40 sm:w-auto"
-        src="~/static/jess-logo.png"
-        srcset="~/static/jess-logo@2x.png 2x"
-      )
+  .flex.flex-col.items-center.w-full(
+    :class="{ 'animate-pulse': loadingJobs }"
+  )
+    main-header
 
-    small.uppercase.mt-1.cursor-default(
-      class="text-sm sm:text-lg"
-    ) Copywriter
+    horizontal-line
 
-    social-links.mt-5
+    job-list(:jobs="jobs")
 </template>
 
 <script lang="ts">
+import {
+  useContext,
+  useFetch,
+  onActivated,
+} from '@nuxtjs/composition-api'
 import { Vue, Component } from 'nuxt-property-decorator'
+import useJobs from '~/composables/useJobs'
 
-@Component
-export default class Home extends Vue {}
+@Component({
+  setup () {
+    const { $fire } = useContext()
+    const jobsCtx = useJobs($fire)
+    const jobs = jobsCtx.getComputedJobs
+
+    useFetch(async () => {
+      await jobsCtx.fetchJobs()
+    })
+
+    onActivated(() => {
+      jobsCtx.fetchJobs()
+    })
+
+    return { ...jobsCtx, jobs }
+  },
+})
+export default class HomePage extends Vue {}
 </script>
-
-<style scoped>
-* {
-  position: relative;
-  font-family: 'Courier Prime', sans-serif;
-}
-</style>
